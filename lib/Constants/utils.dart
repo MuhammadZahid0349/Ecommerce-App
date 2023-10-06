@@ -32,8 +32,8 @@ GestureDetector BackBtn(Color iconcolor) {
     },
     child: Container(
       margin: EdgeInsets.symmetric(vertical: 6.w),
-      height: 36.h,
-      width: 36.w,
+      height: 30.h,
+      width: 30.w,
       decoration: BoxDecoration(
         color: kSecColor.withOpacity(0.2),
         borderRadius: BorderRadius.all(Radius.circular(10.r)),
@@ -41,7 +41,7 @@ GestureDetector BackBtn(Color iconcolor) {
       child: Icon(
         Icons.arrow_back_ios,
         color: iconcolor,
-        size: 25.sp,
+        size: 20.sp,
       ),
     ),
   );

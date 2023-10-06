@@ -1,13 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unused_local_variable, unnecessary_null_comparison, file_names
 
+import 'package:ecommerce_app/Constants/ColorConstants.dart';
 import 'package:ecommerce_app/Constants/app-constant.dart';
+import 'package:ecommerce_app/Constants/utils.dart';
 import 'package:ecommerce_app/controllers/sign-in-controller.dart';
 import 'package:ecommerce_app/screens/admin-panel/admin-main-screen.dart';
-import 'package:ecommerce_app/screens/auth-ui/sign-up-screen.dart';
+import 'package:ecommerce_app/screens/auth%20screens/sign-up-screen.dart';
 import 'package:ecommerce_app/screens/user-panel/main-screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -25,6 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final SignInController signInController = Get.put(SignInController());
   final GetUserDataController getUserDataController =
       Get.put(GetUserDataController());
+
   TextEditingController userEmail = TextEditingController();
   TextEditingController userPassword = TextEditingController();
 
@@ -33,18 +37,24 @@ class _SignInScreenState extends State<SignInScreen> {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppConstant.appScendoryColor,
+          backgroundColor: logoColor,
           centerTitle: true,
-          title: Text(
-            "Sign In",
-            style: TextStyle(color: AppConstant.appTextColor),
-          ),
+          title: CustomizedText(
+              text: "Sign In",
+              color: white,
+              size: 20.sp,
+              FontWeight: FontWeight.bold),
+          leading: BackBtn(white),
         ),
-        body: Container(
+        body: SingleChildScrollView(
           child: Column(
             children: [
               isKeyboardVisible
-                  ? Text("Welcome to my app")
+                  ? CustomizedText(
+                      text: "Welcome to Wind Tech Ecomm App",
+                      color: white,
+                      size: 20.sp,
+                      FontWeight: FontWeight.bold)
                   : Column(
                       children: [
                         Lottie.asset('assets/images/splash-icon.json'),

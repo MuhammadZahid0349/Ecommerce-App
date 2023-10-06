@@ -29,8 +29,18 @@ class MyApp extends StatelessWidget {
             title: 'WT Ecomm',
             builder: EasyLoading.init(),
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
+              scaffoldBackgroundColor: Colors.white,
+              // appBarTheme: const AppBarTheme(
+              //   backgroundColor: Color(0xff001828),
+              // ),
+              // textTheme: const TextTheme(
+              //   bodyText1: TextStyle(
+              //       color: Colors.white), // Set default text color
+              //   bodyText2: TextStyle(
+              //       color: Colors.white), // Set default text color
+              // ),
+              // primaryColor: const Color(0xff001828)
             ),
             home: const SplashScreen(),
           );

@@ -16,12 +16,14 @@ class GoogleSignInController extends GetxController {
   Future<void> signInWithGoogle() async {
     final GetDeviceTokenController getDeviceTokenController =
         Get.put(GetDeviceTokenController());
+
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
         EasyLoading.show(status: "Please wait..");
+
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
 

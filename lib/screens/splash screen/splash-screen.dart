@@ -4,7 +4,7 @@ import 'package:ecommerce_app/Constants/app-constant.dart';
 import 'package:ecommerce_app/Constants/utils.dart';
 import 'package:ecommerce_app/controllers/get-user-data-controller.dart';
 import 'package:ecommerce_app/screens/admin-panel/admin-main-screen.dart';
-import 'package:ecommerce_app/screens/auth-ui/welcome-screen.dart';
+import 'package:ecommerce_app/screens/auth%20screens/welcome-screen.dart';
 import 'package:ecommerce_app/screens/user-panel/main-screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +21,13 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   User? user = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
     super.initState();
-    // Timer(Duration(seconds: 3), () {
-    //   // loggdin(context);
-    // });
+    Timer(Duration(seconds: 7), () {
+      loggdin(context);
+    });
   }
 
   Future<void> loggdin(BuildContext context) async {
@@ -34,11 +35,10 @@ class _SplashScreenState extends State<SplashScreen> {
       final GetUserDataController getUserDataController =
           Get.put(GetUserDataController());
       var userData = await getUserDataController.getUserData(user!.uid);
-
       if (userData[0]['isAdmin'] == true) {
-        Get.offAll(() => AdminMainScreen());
+        Get.offAll(() => const AdminMainScreen());
       } else {
-        Get.offAll(() => MainScreen());
+        Get.offAll(() => const MainScreen());
       }
     } else {
       Get.to(() => WelcomeScreen());
