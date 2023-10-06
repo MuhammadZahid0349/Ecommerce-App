@@ -13,6 +13,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../controllers/get-user-data-controller.dart';
 import 'forget-password-screen.dart';
@@ -44,25 +45,46 @@ class _SignInScreenState extends State<SignInScreen> {
               color: white,
               size: 20.sp,
               FontWeight: FontWeight.bold),
-          leading: BackBtn(white),
+          leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              color: white,
+              size: 20.sp,
+            ),
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               isKeyboardVisible
-                  ? CustomizedText(
-                      text: "Welcome to Wind Tech Ecomm App",
-                      color: white,
-                      size: 20.sp,
-                      FontWeight: FontWeight.bold)
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 20.w, horizontal: 10.h),
+                      child: CustomizedText(
+                          text: "Welcome to Wind Tech Ecomm App",
+                          color: skyColor2,
+                          size: 20.sp,
+                          btwSpace: 0.3,
+                          FontWeight: FontWeight.bold),
+                    )
                   : Column(
                       children: [
-                        Lottie.asset('assets/images/splash-icon.json'),
+                        Container(
+                          height: 130.h,
+                          width: Get.width,
+                          color: logoColor,
+                          child: Transform.scale(
+                            alignment: Alignment.center,
+                            scale: 1,
+                            child: Lottie.asset('assets/images/ssicon.json'),
+                          ),
+                        ),
                       ],
                     ),
-              SizedBox(
-                height: Get.height / 20,
-              ),
+              25.h.heightBox,
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
                 width: Get.width,
@@ -70,14 +92,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
                     controller: userEmail,
-                    cursorColor: AppConstant.appScendoryColor,
+                    cursorColor: logoColor2,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "Email",
-                      prefixIcon: Icon(Icons.email),
+                      hintStyle: TextStyle(
+                          color: skyColor1, fontWeight: FontWeight.w400),
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: skyColor1,
+                      ),
                       contentPadding: EdgeInsets.only(top: 2.0, left: 8.0),
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                   ),
@@ -92,18 +119,29 @@ class _SignInScreenState extends State<SignInScreen> {
                       () => TextFormField(
                         controller: userPassword,
                         obscureText: signInController.isPasswordVisible.value,
-                        cursorColor: AppConstant.appScendoryColor,
+                        cursorColor: logoColor2,
                         keyboardType: TextInputType.visiblePassword,
                         decoration: InputDecoration(
                           hintText: "Password",
-                          prefixIcon: Icon(Icons.password),
+                          hintStyle: TextStyle(
+                              color: skyColor1, fontWeight: FontWeight.w400),
+                          prefixIcon: Icon(
+                            Icons.password,
+                            color: skyColor1,
+                          ),
                           suffixIcon: GestureDetector(
                             onTap: () {
                               signInController.isPasswordVisible.toggle();
                             },
                             child: signInController.isPasswordVisible.value
-                                ? Icon(Icons.visibility_off)
-                                : Icon(Icons.visibility),
+                                ? Icon(
+                                    Icons.visibility_off,
+                                    color: skyColor1,
+                                  )
+                                : Icon(
+                                    Icons.visibility,
+                                    color: skyColor1,
+                                  ),
                           ),
                           contentPadding: EdgeInsets.only(top: 2.0, left: 8.0),
                           border: OutlineInputBorder(
@@ -123,27 +161,26 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Text(
                     "Forget Password?",
                     style: TextStyle(
-                        color: AppConstant.appScendoryColor,
-                        fontWeight: FontWeight.bold),
+                        color: logoColor2, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-              SizedBox(
-                height: Get.height / 20,
-              ),
+              40.h.heightBox,
               Material(
                 child: Container(
                   width: Get.width / 2,
                   height: Get.height / 18,
                   decoration: BoxDecoration(
-                    color: AppConstant.appScendoryColor,
+                    color: logoColor,
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: TextButton(
-                    child: Text(
-                      "SIGN IN",
-                      style: TextStyle(color: AppConstant.appTextColor),
-                    ),
+                    child: CustomizedText(
+                        text: "SIGN IN",
+                        color: white,
+                        size: 18.sp,
+                        btwSpace: 0.3,
+                        FontWeight: FontWeight.bold),
                     onPressed: () async {
                       String email = userEmail.text.trim();
                       String password = userPassword.text.trim();
@@ -153,8 +190,8 @@ class _SignInScreenState extends State<SignInScreen> {
                           "Error",
                           "Please enter all details",
                           snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: AppConstant.appScendoryColor,
-                          colorText: AppConstant.appTextColor,
+                          backgroundColor: logoColor,
+                          colorText: white,
                         );
                       } else {
                         UserCredential? userCredential = await signInController
@@ -171,8 +208,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 "Success Admin Login",
                                 "login Successfully!",
                                 snackPosition: SnackPosition.BOTTOM,
-                                backgroundColor: AppConstant.appScendoryColor,
-                                colorText: AppConstant.appTextColor,
+                                backgroundColor: logoColor,
+                                colorText: white,
                               );
                               Get.offAll(() => AdminMainScreen());
                             } else {
@@ -181,8 +218,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 "Success User Login",
                                 "login Successfully!",
                                 snackPosition: SnackPosition.BOTTOM,
-                                backgroundColor: AppConstant.appScendoryColor,
-                                colorText: AppConstant.appTextColor,
+                                backgroundColor: logoColor,
+                                colorText: white,
                               );
                             }
                           } else {
@@ -190,8 +227,8 @@ class _SignInScreenState extends State<SignInScreen> {
                               "Error",
                               "Please verify your email before login",
                               snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: AppConstant.appScendoryColor,
-                              colorText: AppConstant.appTextColor,
+                              backgroundColor: logoColor,
+                              colorText: white,
                             );
                           }
                         } else {
@@ -199,8 +236,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             "Error",
                             "Please try again",
                             snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: AppConstant.appScendoryColor,
-                            colorText: AppConstant.appTextColor,
+                            backgroundColor: logoColor,
+                            colorText: white,
                           );
                         }
                       }
@@ -208,24 +245,24 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: Get.height / 20,
-              ),
+              45.h.heightBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Don't have an account? ",
-                    style: TextStyle(color: AppConstant.appScendoryColor),
+                  CustomizedText(
+                    text: "Don't have an account? ",
+                    color: logoColor,
+                    size: 15.sp,
                   ),
+                  5.w.widthBox,
                   GestureDetector(
                     onTap: () => Get.offAll(() => SignUpScreen()),
-                    child: Text(
-                      "Sign Up",
-                      style: TextStyle(
-                          color: AppConstant.appScendoryColor,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    child: CustomizedText(
+                        text: "Sign Up",
+                        color: logoColor2,
+                        size: 16.sp,
+                        btwSpace: 0.5,
+                        FontWeight: FontWeight.bold),
                   ),
                 ],
               )

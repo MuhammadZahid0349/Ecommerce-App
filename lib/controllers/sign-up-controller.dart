@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, unused_field, body_might_complete_normally_nullable, unused_local_variable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_app/Constants/ColorConstants.dart';
 import 'package:ecommerce_app/Constants/app-constant.dart';
 import 'package:ecommerce_app/models/user-model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -62,8 +63,8 @@ class SignUpController extends GetxController {
         "Error",
         "$e",
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppConstant.appScendoryColor,
-        colorText: AppConstant.appTextColor,
+        backgroundColor: logoColor,
+        colorText: white,
       );
     }
   }

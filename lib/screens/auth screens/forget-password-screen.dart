@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unused_local_variable, file_names
 
+import 'package:ecommerce_app/Constants/ColorConstants.dart';
 import 'package:ecommerce_app/Constants/app-constant.dart';
+import 'package:ecommerce_app/Constants/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../controllers/forget-password-controller.dart';
 
@@ -25,26 +29,38 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppConstant.appScendoryColor,
+          backgroundColor: logoColor,
           centerTitle: true,
-          title: Text(
-            "Forget Password",
-            style: TextStyle(color: AppConstant.appTextColor),
+          title: CustomizedText(
+              text: "Forget Password",
+              color: white,
+              size: 20.sp,
+              FontWeight: FontWeight.bold),
+          leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              color: white,
+              size: 20.sp,
+            ),
           ),
         ),
-        body: Container(
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              isKeyboardVisible
-                  ? Text("Welcome to my app")
-                  : Column(
-                      children: [
-                        Lottie.asset('assets/images/splash-icon.json'),
-                      ],
-                    ),
-              SizedBox(
-                height: Get.height / 20,
+              Container(
+                height: 160.h,
+                width: Get.width,
+                color: logoColor,
+                child: Transform.scale(
+                  alignment: Alignment.center,
+                  scale: 1.2,
+                  child: Lottie.asset('assets/images/ssicon.json'),
+                ),
               ),
+              30.h.heightBox,
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
                 width: Get.width,
@@ -52,11 +68,16 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   padding: const EdgeInsets.all(10.0),
                   child: TextFormField(
                     controller: userEmail,
-                    cursorColor: AppConstant.appScendoryColor,
+                    cursorColor: logoColor,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: "Email",
-                      prefixIcon: Icon(Icons.email),
+                      hintStyle: TextStyle(
+                          color: skyColor1, fontWeight: FontWeight.w400),
+                      prefixIcon: Icon(
+                        Icons.email,
+                        color: skyColor1,
+                      ),
                       contentPadding: EdgeInsets.only(top: 2.0, left: 8.0),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -65,32 +86,31 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: Get.height / 20,
-              ),
+              30.h.heightBox,
               Material(
                 child: Container(
                   width: Get.width / 2,
                   height: Get.height / 18,
                   decoration: BoxDecoration(
-                    color: AppConstant.appScendoryColor,
+                    color: logoColor,
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                   child: TextButton(
-                    child: Text(
-                      "Forget",
-                      style: TextStyle(color: AppConstant.appTextColor),
-                    ),
+                    child: CustomizedText(
+                        text: "Forget",
+                        color: white,
+                        size: 18.sp,
+                        btwSpace: 0.3,
+                        FontWeight: FontWeight.bold),
                     onPressed: () async {
                       String email = userEmail.text.trim();
-
                       if (email.isEmpty) {
                         Get.snackbar(
                           "Error",
                           "Please enter all details",
                           snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: AppConstant.appScendoryColor,
-                          colorText: AppConstant.appTextColor,
+                          backgroundColor: logoColor,
+                          colorText: white,
                         );
                       } else {
                         String email = userEmail.text.trim();
