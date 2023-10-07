@@ -2,8 +2,11 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_app/Constants/ColorConstants.dart';
+import 'package:ecommerce_app/Constants/utils.dart';
 import 'package:ecommerce_app/models/categories-model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 
@@ -31,7 +34,11 @@ class CategoriesWidget extends StatelessWidget {
 
         if (snapshot.data!.docs.isEmpty) {
           return Center(
-            child: Text("No category found!"),
+            child: CustomizedText(
+                text: "No category found!",
+                size: 16.sp,
+                color: logoColor2,
+                FontWeight: FontWeight.bold),
           );
         }
 

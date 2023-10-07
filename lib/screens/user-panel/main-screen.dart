@@ -1,8 +1,13 @@
 // ignore_for_file: file_names, prefer_const_constructors, no_leading_underscores_for_local_identifiers, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
 
+import 'package:animate_do/animate_do.dart';
+import 'package:ecommerce_app/Constants/ColorConstants.dart';
+import 'package:ecommerce_app/Constants/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../../Constants/app-constant.dart';
 import '../../widgets/banner-widget.dart';
 import '../../widgets/category-widget.dart';
@@ -16,29 +21,27 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: AppConstant.appTextColor),
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: AppConstant.appScendoryColor,
-            statusBarIconBrightness: Brightness.light),
-        backgroundColor: AppConstant.appMainColor,
-        title: Text(
-          AppConstant.appMainName,
-          style: TextStyle(color: AppConstant.appTextColor),
-        ),
+        iconTheme: IconThemeData(color: white),
+        backgroundColor: logoColor,
+        title: CustomizedText(
+            text: "WT Ecomm",
+            color: white,
+            size: 20.sp,
+            FontWeight: FontWeight.bold),
         centerTitle: true,
       ),
       drawer: DrawerWidget(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Container(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 7.h),
           child: Column(
             children: [
-              SizedBox(
-                height: Get.height / 90.0,
-              ),
+              10.h.heightBox,
               //banners
-              BannerWidget(),
-
+              FadeInDown(
+                  delay: const Duration(milliseconds: 300),
+                  child: BannerWidget()),
               //heading
               HeadingWidget(
                 headingTitle: "Categories",

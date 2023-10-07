@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/Constants/ColorConstants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HeadingWidget extends StatelessWidget {
   final String headingTitle;
@@ -17,9 +18,9 @@ class HeadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+      margin: EdgeInsets.symmetric(horizontal: 5.h, vertical: 10.w),
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -37,7 +38,7 @@ class HeadingWidget extends StatelessWidget {
                   headingSubTitle,
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 12.0,
+                    fontSize: 12.sp,
                     color: Colors.grey,
                   ),
                 ),
@@ -49,7 +50,7 @@ class HeadingWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   border: Border.all(
-                    color: mainbgColor,
+                    color: logoColor2,
                     width: 1.5,
                   ),
                 ),
@@ -59,8 +60,8 @@ class HeadingWidget extends StatelessWidget {
                     buttonText,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 12.0,
-                        color: mainbgColor),
+                        fontSize: 12.sp,
+                        color: logoColor2),
                   ),
                 ),
               ),
