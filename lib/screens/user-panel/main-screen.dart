@@ -3,6 +3,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:ecommerce_app/Constants/ColorConstants.dart';
 import 'package:ecommerce_app/Constants/utils.dart';
+import 'package:ecommerce_app/widgets/flash-sale-widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,6 +60,7 @@ class MainScreen extends StatelessWidget {
                 onTap: () {},
                 buttonText: "See More >",
               ),
+              FlashSaleWidget(),
             ],
           ),
         ),
