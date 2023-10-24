@@ -44,7 +44,7 @@ class CategoriesWidget extends StatelessWidget {
 
         if (snapshot.data != null) {
           return Container(
-            height: Get.height / 5.5,
+            height: 130.h,
             child: ListView.builder(
               itemCount: snapshot.data!.docs.length,
               shrinkWrap: true,
@@ -58,6 +58,8 @@ class CategoriesWidget extends StatelessWidget {
                   updatedAt: snapshot.data!.docs[index]['updatedAt'],
                 );
                 return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
                       padding: EdgeInsets.all(5.0),
